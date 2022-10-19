@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 				buffer[i] = *p;
 				p++;
 			}
-			printf("0x%.2X, ", pack(buffer));
+			printf("0x%.2x, ", pack(buffer));
 		}
 		printf("\n");
 
