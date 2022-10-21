@@ -1,3 +1,3 @@
 LDFLAGS=-lm
 CFLAGS=-g
-all: bit1
+all: onebit

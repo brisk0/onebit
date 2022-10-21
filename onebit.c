@@ -23,7 +23,7 @@ uint8_t pack(const unsigned char in[static 8]) {
 int main(int argc, char *argv[])
 {
 	if (argc < 2) {
-		fprintf(stderr, "Usage: bit1 <input filename> [...other input filenames]\n");
+		fprintf(stderr, "Usage: onebit <input filename> [...other input filenames]\n");
 		exit(EXIT_FAILURE);
 	}
 
