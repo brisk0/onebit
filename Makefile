@@ -1,10 +1,8 @@
 LDFLAGS=-lm
-CFLAGS=-O2 -Wall
-all: onebit
+CFLAGS=-g -O2 -Wall -Wpedantic -std=c17
 
-.PHONY: debug
-debug: CFLAGS=-g -O0 -Wall
-debug: onebit
+.PHONY: all
+all: onebit
 
 .PHONY: clean
 clean:
