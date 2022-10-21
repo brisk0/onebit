@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
 		unsigned char *begin = data;
 		unsigned char *end = data + x*y;
 		unsigned char *p = begin;
-		unsigned char buffer[8] = {};
+		unsigned char buffer[8] = {0};
 
 		for (int j = 0; j < finalbytes; j++) {
 			memset(buffer,0,8);
