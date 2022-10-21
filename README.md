@@ -14,7 +14,7 @@ integer number of output bytes. If the number of pixels are not a multiple of 8,
 trailing zero bits will make up the difference in the output.
 
 Files are printed in the format `0xff, 0xff, ` etc. Each input file maps to a
-line of the output. The uutput is big-endian: the first byte will become the
+line of the output. The output is big-endian: the first byte will become the
 most significant bit.
 
 Theoretically supported image formats from stb_image:
