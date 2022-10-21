@@ -1,6 +1,6 @@
-#include <stdlib.h>
 #include <error.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #define STB_IMAGE_IMPLEMENTATION
@@ -27,7 +27,9 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
+	// Iterate over input files
 	for (char **filename = &argv[1]; filename < &argv[argc]; filename++) {
+		// Load image
 		int x,y,n;
 		unsigned char *data = stbi_load(*filename, &x, &y, &n, STBI_GREYSCALE);
 		if (!data) {
@@ -35,20 +37,17 @@ int main(int argc, char *argv[])
 			error(EXIT_FAILURE, 0, "Failed to load image: %s", stbi_failure_reason());
 		}
 
-		int pixels = x * y;
-		int finalbytes = pixels/8;
-		if (pixels % 8 != 0) {
-			// Add some space if we don't have an even number of bytes
-			finalbytes += 1;
-		}
+		int inbytes = x * y;
+		int outbytes = inbytes/8;
+		// Round up instead of down if our pixels aren't a multiple of 8
+		if (inbytes % 8 != 0) outbytes += 1;
 
-		unsigned char *begin = data;
-		unsigned char *end = data + x*y;
-		unsigned char *p = begin;
-		unsigned char buffer[8] = {0};
-
-		for (int j = 0; j < finalbytes; j++) {
+		unsigned char *p = data;
+		unsigned char *end = data + inbytes;
+		unsigned char buffer[8];
+		for (int j = 0; j < outbytes; j++) {
 			memset(buffer,0,8);
+			// Fill the buffer only if we have remaining bytes to read
 			for (int i = 0; i < 8; i++) {
 				if (p >= end) break;
 				buffer[i] = *p;
@@ -58,6 +57,7 @@ int main(int argc, char *argv[])
 		}
 		printf("\n");
 
+		// Cleanup
 		stbi_image_free(data);
 	}
 }
